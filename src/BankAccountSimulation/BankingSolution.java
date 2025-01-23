@@ -22,12 +22,14 @@ class BankAccount extends Bank {
     String accountNumber;
     String accountName;
     String accountType;
+    double accountBalance;
 
-    BankAccount(String nameOfBank,String accountNumber, String accountName, String accountType){
+    BankAccount(String nameOfBank,String accountNumber, String accountName, String accountType,double initialBalance){
         super(nameOfBank);
         this.accountName=accountName;
         this.accountNumber=accountNumber;
         this.accountType = accountType;
+        this.accountBalance = initialBalance;
         // this.bank = new Bank(bankName); 
     }
 
@@ -45,11 +47,29 @@ class BankAccount extends Bank {
     }
 
     // banking operations
-    void deposit(){}
+    void deposit(double amount, String receiverAccount){
+        if(amount > 0 && receiverAccount.equals(accountNumber)){
+            accountBalance +=amount;
+            System.out.printf("Account number %s deposited: %s",accountName,amount);
+        } else {
+            System.out.printf("You can't deposit %f", amount);
+        }
+    }
 
-    void checkBalance(){}
+    void checkBalance(){
+        System.out.printf("Account balance: %.2f",accountBalance);
+    }
 
-    void withdrawal(){}
+    void withdrawal(double amount){
+        if(amount > 0 && amount<= accountBalance ){
+            accountBalance -= amount;
+            System.out.printf("A withdrawal of %f occured.\n Account balance: %af",amount,accountBalance);
+        } else if(amount < accountBalance) {
+            System.out.print("Insufficient Funds.");
+        } else {
+            System.out.print("Inalid input.");
+        }
+    }
 
     void transfer(){}
 }
@@ -58,7 +78,7 @@ class BankAccount extends Bank {
 public class BankingSolution {
     public static void main(String[] args) {
 
-        BankAccount bankAccount1 = new BankAccount("Anifowose","Adepoju Adebobola Kehinde", "2450327674","Savings");
+        BankAccount bankAccount1 = new BankAccount("Anifowose","Adepoju Adebobola Kehinde", "2450327674","Savings",0.00);
 
         System.out.println(bankAccount1.accountName);
         System.out.println();
@@ -67,6 +87,8 @@ public class BankingSolution {
         System.out.println(bankAccount1.nameOfBank);
         System.out.println();
         System.out.println(bankAccount1.accountType);
+        System.out.println();
+        bankAccount1.checkBalance();
         
     }
 }
