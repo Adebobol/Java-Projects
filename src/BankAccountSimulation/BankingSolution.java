@@ -1,6 +1,7 @@
 package BankAccountSimulation;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatConversionException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -85,7 +86,21 @@ class BankAccount extends Bank {
         }
     }
 
-    void transfer(){}
+    void transfer(double amount, Long reciverAccount){
+        if (amount > 0 && amount < accountBalance && reciverAccount != accountNumber) {
+            accountBalance -= amount;
+            // System.out.printf("Transfer of $ %d has been made to $d.\ntRANSFER SUCCESSFUL",amount, reciverAccount);
+            System.out.println("Transfer successful.");
+        } else if(amount <=0){
+            System.out.printf("You can't make transfer of %d",amount);
+        } else if(amount>=accountBalance) {
+            System.out.println("Insufficient funds!!!");
+        } else if(reciverAccount == accountNumber) {
+            System.err.println("You can't make transfer to your account.");
+        } else{
+            System.out.println("System Error.");
+        }
+    }
 }
 
 
@@ -105,15 +120,19 @@ public class BankingSolution {
 
         BankAccount newAccount = new BankAccount(accountNumber, bankName, name, accountType, ninNumber);
 
-        ArrayList<Bank> accounts = new ArrayList<>();
+        ArrayList<BankAccount> accounts = new ArrayList<>();
         ArrayList<String> NIN = new ArrayList<>();
 
+    
+        try{
+            
         while(running){
             System.out.println("Welcome To Anifowese Bank");
             System.out.println("1) Create Account");
             System.out.println("2) Deposit");
             System.out.println("3) Withdraw");
             System.out.println("4) Check Balance");
+            System.out.println("5) Transfer");
             System.out.print("Enter response: ");
             response= scanner.next();
 
@@ -145,17 +164,44 @@ public class BankingSolution {
                     break;
                 case "2":
                     System.out.println("Amount to deposit");
-                    double amount = scanner.nextDouble();
-                    newAccount.deposit(amount, accountNumber);
+                    double amountToDeposit = scanner.nextDouble();
+                    newAccount.deposit(amountToDeposit, accountNumber);
                     System.out.println();
                     break;
                 case "3":
                     break;
                 case "4":
+                    newAccount.checkBalance();
+                    break;
+                case "5":
+                    System.out.println("Enter amount to be transferred: ");
+                    double amountToTransfer = scanner.nextDouble();
+                    System.out.println("Enter account number of reciever: ");
+                    Long recieverAccount = scanner.nextLong();
+
+                    if(accounts.size()==0){
+                        System.out.println("Issues!");
+                        break;
+                    }
+                    
+
+                    for(BankAccount account: accounts){
+                        if(account.accountNumber.equals(recieverAccount)){
+                            newAccount.transfer(amountToTransfer, recieverAccount);
+                        } else{
+                            System.out.println("Invalid reciever account number.");
+                        }
+                    }
                     break;
                 default:
+                    running = false;
                     System.out.println("Invalid response!");
             }
+        } 
+    
+        } catch(IllegalFormatConversionException e){
+            System.out.println();
+
         }
 
       
