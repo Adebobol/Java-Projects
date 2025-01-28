@@ -1,14 +1,8 @@
 package ConsoleBased;
 
-import java.sql.PreparedStatement;
-import java.text.DateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Scanner;
-
-import javax.swing.text.DateFormatter;
 
 public class AlarmClock {
     public static void main(String[] args) {
@@ -53,7 +47,8 @@ public class AlarmClock {
                 HH = scanner.next();
                 System.out.println("Enter mm: ");
                 mm = scanner.next();
-                System.out.printf("%s %s:%s", presentDate,HH,mm);
+                // Alarm set for 08:30. Waiting...
+                System.out.printf("Alarm set for: %s %s:%s\nwaiting...", presentDate,HH,mm);
                 break;
             case "2":
                 System.out.println("Enter HH: ");
@@ -66,7 +61,7 @@ public class AlarmClock {
                 MMMM = scanner.next();
                 System.out.println("Enter year: ");
                 uuuu = scanner.next();
-                System.out.printf("Alarm set to: %s, %s %s. %s:%s",d,MMMM,uuuu,HH,mm);
+                System.out.printf("Alarm for: %s,%s %s. %s:%s",d,MMMM,uuuu,HH,mm);
                 break;
             default:
                 System.out.println("Wrong inputs.");
