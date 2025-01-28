@@ -2,6 +2,7 @@ package ConsoleBased;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.Timer;
@@ -18,63 +19,47 @@ public class AlarmClock {
 
         Scanner scanner =  new Scanner(System.in);
 
-        // present date
-        LocalDate date = LocalDate.now();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d,MMMM uuuu.");
-        String presentDate = date.format(dateFormatter);
-        // present date and time
-        LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d,MMMM uuuu. HH:mm");
-        String presentDateTime = dateTime.format(dateTimeFormatter);
-        System.out.println(presentDateTime);
-        System.out.println();
-        
-
         // Define time variables
-        String d = "";
-        String MMMM = "";
-        String uuuu = "";
-        String HH = "";
-        String mm = "";
-        String setAlarm = "";
+        int d = 0;
+        int MMMM = 0;
+        int uuuu = 0;
+        int HH = 0;
+        int mm = 0;
    
+        // variable indicating alarm is turned on or off
         boolean on = true;
 
-        // response variable for switch
+        // response variable for type of alram
         String response = "";
 
+        // Opening program for my alarm.
         System.out.println("Welcome to the Alarm Program!");
         System.out.println("Set time alone. Use format(HH:mm): 08:30\nPress 1: ");
         System.out.println();
         System.out.println("Set date and time. Use format(day, month year. HH:mm)\nPress 2: ");
         response = scanner.next();
 
+        // switch statement to choose alarm type
         switch(response){
             case "1":
+            // if it's only for the time
                 System.out.println("Enter HH: ");
-                HH = scanner.next();
+                HH = scanner.nextInt();
                 System.out.println("Enter mm: ");
-                mm = scanner.next();
-                // Alarm set for 08:30. Waiting...
-                setAlarm = presentDate+" "+HH+":"+mm;
-                System.out.println(setAlarm);
-                System.out.printf("Alarm set for: %s %s:%s\nwaiting...", presentDate,HH,mm);
-                
+                mm = scanner.nextInt();             
                 break;
             case "2":
+            // if it's for date and time
                 System.out.println("Enter HH: ");
-                HH = scanner.next();
+                HH = scanner.nextInt();
                 System.out.println("Enter mm: ");
-                mm = scanner.next();
+                mm = scanner.nextInt();
                 System.out.println("Enter day: ");
-                d = scanner.next();
+                d = scanner.nextInt();
                 System.out.println("Enter month: ");
-                MMMM = scanner.next();
+                MMMM = scanner.nextInt();
                 System.out.println("Enter year: ");
-                uuuu = scanner.next();
-                setAlarm = d+","+MMMM+ " " +uuuu+". " + HH+":"+mm;
-                System.out.println(setAlarm);
-                System.out.printf("Alarm for: %s,%s %s. %s:%s",d,MMMM,uuuu,HH,mm);
+                uuuu = scanner.nextInt();
                 break;
             default:
                 System.out.println("Wrong inputs.");
@@ -87,18 +72,9 @@ public class AlarmClock {
 
             @Override
             public void run() {
-                String presentDateTime ="";
-                // present date and time
-            LocalDateTime dateTime11 = LocalDateTime.now();
-            DateTimeFormatter dateTime11Formatter = DateTimeFormatter.ofPattern("d,MMMM uuuu. HH:mm");
-            presentDateTime = dateTime11.format(dateTime11Formatter);
+              
 
-            System.out.println(presentDateTime);
-                System.out.println(setAlarm);
-
-            if(presentDate.equals(setAlarm)) {
-                System.out.println("Alarm rings!!!");
-            }
+           
             }
             
           };
