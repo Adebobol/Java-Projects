@@ -31,13 +31,12 @@ public class AlarmClock {
         System.out.println();
         
 
-        boolean on = true;
         // Define time variables
-        String d = "00";
-        String MMMM = "January";
-        String uuuu = "2000";
-        String HH = "12";
-        String mm = "00";
+        String d = "";
+        String MMMM = "";
+        String uuuu = "";
+        String HH = "";
+        String mm = "";
 
         // response variable for switch
         String response = "";
@@ -53,41 +52,42 @@ public class AlarmClock {
         // System.out.println("Enter year: ");
         // uuuu = scanner.nextLine();
 
-        System.out.println(HH);
-        System.out.println(d);
-        System.out.println(mm);
-        System.out.println(uuuu);
-        System.out.println(MMMM);
         
         // if loop to check if day-month-year is empty
-        if(d.isEmpty() && MMMM.isEmpty()  && uuuu.isEmpty()){
-            System.out.printf("%s %s:%s", presentDate,HH,mm);
-        } else {
-            System.out.printf("Alarm set to: %s, %s %s. %s:%s",d,MMMM,uuuu,HH,mm);
-        }
+        // if(d.isEmpty() && MMMM.isEmpty()  && uuuu.isEmpty()){
+        //     System.out.printf("%s %s:%s", presentDate,HH,mm);
+        // } else {
+        //     System.out.printf("Alarm set to: %s, %s %s. %s:%s",d,MMMM,uuuu,HH,mm);
+        // }
 
-        System.out.print("Set time alone. Press 1: ");
+        System.out.println("Set time alone. Press 1: ");
         System.out.println("set date and time. Press 2: ");
         response = scanner.next();
 
         switch(response){
             case "1":
-                System.out.print("Enter hour: ");
-                HH = scanner.nextLine();
+                System.out.println("Enter hour: ");
+                HH = scanner.next();
                 System.out.println("Enter minute: ");
-                mm = scanner.nextLine();
+                mm = scanner.next();
+                System.out.printf("%s %s:%s", presentDate,HH,mm);
                 break;
             case "2":
+                System.out.println("Enter hour: ");
+                HH = scanner.next();
+                System.out.println("Enter minute: ");
+                mm = scanner.next();
                 System.out.println("Enter day: ");
-                d = scanner.nextLine();
+                d = scanner.next();
                 System.out.println("Enter month: ");
-                MMMM = scanner.nextLine();
+                MMMM = scanner.next();
                 System.out.println("Enter year: ");
-                uuuu = scanner.nextLine();
+                uuuu = scanner.next();
+                System.out.printf("Alarm set to: %s, %s %s. %s:%s",d,MMMM,uuuu,HH,mm);
                 break;
+            default:
+                System.out.println("Wrong inputs.");
         }
-
-
 
         scanner.close();
 
