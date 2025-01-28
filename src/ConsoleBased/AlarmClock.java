@@ -41,41 +41,24 @@ public class AlarmClock {
         // response variable for switch
         String response = "";
 
-        // System.out.print("Enter hour: ");
-        // HH = scanner.nextLine();
-        // System.out.println("Enter minute: ");
-        // mm = scanner.nextLine();
-        // System.out.println("Enter day: ");
-        // d = scanner.nextLine();
-        // System.out.println("Enter month: ");
-        // MMMM = scanner.nextLine();
-        // System.out.println("Enter year: ");
-        // uuuu = scanner.nextLine();
-
-        
-        // if loop to check if day-month-year is empty
-        // if(d.isEmpty() && MMMM.isEmpty()  && uuuu.isEmpty()){
-        //     System.out.printf("%s %s:%s", presentDate,HH,mm);
-        // } else {
-        //     System.out.printf("Alarm set to: %s, %s %s. %s:%s",d,MMMM,uuuu,HH,mm);
-        // }
-
-        System.out.println("Set time alone. Press 1: ");
-        System.out.println("set date and time. Press 2: ");
+        System.out.println("Welcome to the Alarm Program!");
+        System.out.println("Set time alone. Use format(HH:mm): 08:30\nPress 1: ");
+        System.out.println();
+        System.out.println("Set date and time. Use format(day, month year. HH:mm)\nPress 2: ");
         response = scanner.next();
 
         switch(response){
             case "1":
-                System.out.println("Enter hour: ");
+                System.out.println("Enter HH: ");
                 HH = scanner.next();
-                System.out.println("Enter minute: ");
+                System.out.println("Enter mm: ");
                 mm = scanner.next();
                 System.out.printf("%s %s:%s", presentDate,HH,mm);
                 break;
             case "2":
-                System.out.println("Enter hour: ");
+                System.out.println("Enter HH: ");
                 HH = scanner.next();
-                System.out.println("Enter minute: ");
+                System.out.println("Enter mm: ");
                 mm = scanner.next();
                 System.out.println("Enter day: ");
                 d = scanner.next();
