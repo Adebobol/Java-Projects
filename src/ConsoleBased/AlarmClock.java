@@ -1,13 +1,9 @@
 package ConsoleBased;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.DelayQueue;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class AlarmClock {
@@ -31,7 +27,6 @@ public class AlarmClock {
         AtomicReference<LocalDateTime> alarm = new AtomicReference<>(LocalDateTime.now());
    
         // variable indicating alarm is turned on or off
-        boolean on = true;
 
         // response variable for type of alram
         String response = "";
