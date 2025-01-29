@@ -1,10 +1,16 @@
 package ConsoleBased;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicReference;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class AlarmClock {
     public static void main(String[] args) {
@@ -16,6 +22,19 @@ public class AlarmClock {
         // Beep! Beep! Beep! Alarm ringing!
 
         Scanner scanner =  new Scanner(System.in);
+
+        // checking file to play sound
+        
+        String filePath = "c:\\Users\\OXYMO";
+        File file = new File(filePath);
+
+        try(AudioInputStream audiostream = AudioSystem.getAudioInputStream(file)) {
+
+        } catch(UnsupportedAudioFileException e){
+            System.out.println();
+        } catch(IOException e){
+            System.out.println();
+        }
 
         // Define time variables
         int d = 29;
