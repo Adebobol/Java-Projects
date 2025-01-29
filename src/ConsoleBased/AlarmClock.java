@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.DelayQueue;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class AlarmClock {
     public static void main(String[] args) {
@@ -20,11 +22,13 @@ public class AlarmClock {
         Scanner scanner =  new Scanner(System.in);
 
         // Define time variables
-        int d = 0;
-        int MMMM = 0;
-        int uuuu = 0;
-        int HH = 0;
-        int mm = 0;
+        int d = 29;
+        int MMMM = 01;
+        int uuuu = 2025;
+        int HH = 12;
+        int mm = 00;
+        // LocalDateTime alarm = LocalDateTime.now();
+        AtomicReference<LocalDateTime> alarm = new AtomicReference<>(LocalDateTime.now());
    
         // variable indicating alarm is turned on or off
         boolean on = true;
@@ -46,7 +50,10 @@ public class AlarmClock {
                 System.out.println("Enter HH: ");
                 HH = scanner.nextInt();
                 System.out.println("Enter mm: ");
-                mm = scanner.nextInt();             
+                mm = scanner.nextInt();  
+                alarm.set(LocalDateTime.of(uuuu,MMMM, d ,HH,mm));
+                System.out.println(alarm);
+                System.out.println();
                 break;
             case "2":
             // if it's for date and time
@@ -60,25 +67,36 @@ public class AlarmClock {
                 MMMM = scanner.nextInt();
                 System.out.println("Enter year: ");
                 uuuu = scanner.nextInt();
+                alarm.set(LocalDateTime.of(uuuu,MMMM, d ,HH,mm));
+                System.out.println(alarm);
+                System.out.println();
                 break;
             default:
                 System.out.println("Wrong inputs.");
         }
 
-        while(on){
-          Timer timer = new Timer();
-          TimerTask task = new TimerTask() {
+        
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
 
 
-            @Override
-            public void run() {
-              
-
-           
-            }
+        @Override
+        public void run() {
             
-          };
+            
+            LocalDateTime dtnow = LocalDateTime.now();
+            // System.out.println(dtnow);
+              
+            if(dtnow.withNano(0).equals(alarm.get().withNano(0))){
+                System.out.println("Alarm rings!!!!");
+            }
+           
         }
+            
+        };
+
+        timer.schedule(task, 0,1000);
+        
 
         scanner.close();
 
