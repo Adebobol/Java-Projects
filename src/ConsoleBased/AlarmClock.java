@@ -10,6 +10,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class AlarmClock {
@@ -25,17 +27,10 @@ public class AlarmClock {
 
         // checking file to play sound
         
-        String filePath = "c:\\Users\\OXYMO";
-        File file = new File(filePath);
+        String filepath = "C:\\Users\\OXYMO\\Java Tut\\main\\src\\audio\\13 Break Or Make Me - (SongsLover.com).wav";
+        File file = new File(filepath);   
 
-        try(AudioInputStream audiostream = AudioSystem.getAudioInputStream(file)) {
-
-        } catch(UnsupportedAudioFileException e){
-            System.out.println();
-        } catch(IOException e){
-            System.out.println();
-        }
-
+        
         // Define time variables
         int d = 29;
         int MMMM = 01;
@@ -89,20 +84,30 @@ public class AlarmClock {
                 System.out.println("Wrong inputs.");
         }
 
+    
+
         
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
+            
 
 
         @Override
         public void run() {
-            
             
             LocalDateTime dtnow = LocalDateTime.now();
             // System.out.println(dtnow);
               
             if(dtnow.withNano(0).equals(alarm.get().withNano(0))){
                 System.out.println("Alarm rings!!!!");
+
+                try(AudioInputStream audiostream = AudioSystem.getAudioInputStream(file)) {
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(audiostream);
+                    clip.start();
+                } catch(IOException | UnsupportedAudioFileException | LineUnavailableException e){
+                    System.out.println("Error playinf sound " + e.getMessage());
+                }
             }
            
         }
