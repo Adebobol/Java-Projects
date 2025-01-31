@@ -2,10 +2,6 @@ package USSD;
 
 import java.util.Scanner;
 
-// class USSDKOMPANY{
-//     private
-// }
-
 public class Ussd {
    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -44,7 +40,9 @@ public class Ussd {
             serviceResponse= scanner.nextLine();
 
             switch(serviceResponse){
-                case "1"->System.out.println();
+                case "1"->{
+
+                }
                 
             }
         }while(running);
