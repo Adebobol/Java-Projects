@@ -9,6 +9,9 @@ public class TaskManager{
 
 
     public void createTask(String title, String description, LocalDate createdDate, boolean isDone){
+        if(title==" " || description==" "){
+            System.out.println("Title can't be empty.");
+        }
         int currentSize = tasks.size();
         int id = currentSize + 1;
         tasks.add(new Task(id, title, description, createdDate, isDone, createdDate));
