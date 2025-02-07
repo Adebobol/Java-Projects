@@ -1,25 +1,27 @@
 package TaskManagement;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+
 
 public class Task implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private String taskTitle;
     private String task;
-    private LocalDate createdDate;
+    private String createdDate;
     private boolean isdone;
-    private LocalDate toBeCompleted;
+    private String toBeCompleted;
 
-    Task(int id, String title, String description, LocalDate dateCreated, boolean isDone, LocalDate toBeCompleted){
+    Task(int id, String title, String description, String dateCreated, boolean isDone){
         this.id=id;
         this.taskTitle=title;
         this.task=description;
         this.createdDate=dateCreated;
         this.isdone=isDone;
-        this.toBeCompleted=toBeCompleted;
+        
     }
 
+    @Override
     public String toString(){
         return "Task " + id + ": " + this.task + ".\nCreated: "+createdDate;
     }
@@ -37,11 +39,11 @@ public class Task implements Serializable {
         return task;
     }
 
-    public LocalDate getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public LocalDate getToBeCompleted() {
+    public String getToBeCompleted() {
         return toBeCompleted;
     }
 
