@@ -69,7 +69,7 @@ public class TaskMainApp {
                         break;
                     }
                     
-                    // task_manager.updateTask(id, utitle, udescription);
+                    task_manager.updateTask(id, utitle, udescription);
 
                 }
 

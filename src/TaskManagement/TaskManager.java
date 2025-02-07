@@ -33,26 +33,31 @@ public class TaskManager{
        }
     }
 
-    public String lookupTask(int id){
-        for(Task task: tasks) {
-            if(task.getId()==id){
-                return task.toString();
-            }
+    public void lookupTask(int id){
+        try {
+            // int taskSize=tasks.size();
+            for(Task task: tasks) {
+                if(task.getId()==id){
+                    System.out.println(task);
+                }
+            }      
+        } catch (Exception e) {
+            System.out.println("Invalid id.");
         }
-        return null;
     }
 
-    // public Task updateTask(int id,String title, String description){
-    //    Task uTask = getTask(id);
-    //    System.out.println(uTask.getTaskTitle());
-    //    if(!title.isEmpty()){
-    //         uTask.setTaskTitle(title);
-    //    } else if(description.isEmpty()){
-    //         uTask.setTask(description);
-    //    }
-    //    saveTask();
-    //    return uTask;
-    // }
+    public Task updateTask(int id,String title, String description){
+        int twickId = id-1;
+        Task uTask = tasks.get(twickId);
+      
+        if(!title.isBlank()){
+            uTask.setTaskTitle(title);
+        } else if(!description.isBlank()){
+            uTask.setTask(description);
+        }
+       saveTask();
+       return uTask;
+    }
 
     public void deleteTask(int id){
         tasks.remove(id);
