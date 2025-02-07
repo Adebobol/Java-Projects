@@ -23,7 +23,7 @@ public class Task implements Serializable {
 
     @Override
     public String toString(){
-        return "Task " + id + ": " + this.task + ".\nCreated: "+createdDate;
+        return "Task " + id + ": " + this.taskTitle + "\n" + this.task + ".\nCreated: "+createdDate;
     }
 
     // getters
@@ -48,6 +48,17 @@ public class Task implements Serializable {
     }
 
     public boolean isDone() {
+
         return isdone;
+    }
+
+    // setters
+
+    public void setTaskTitle(String taskTitle) {
+        this.taskTitle = taskTitle;
+    }
+
+    public void setTask(String task) {
+        this.task = task;
     }
 }

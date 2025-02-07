@@ -33,32 +33,26 @@ public class TaskManager{
        }
     }
 
-    public Task getTask(int id){
-        Task task = new Task(id, null, null, null, false);
-        if (id > tasks.size()) {
-            System.out.println("Invalid id.");
-        } else {
-            tasks.get(id);
+    public String lookupTask(int id){
+        for(Task task: tasks) {
+            if(task.getId()==id){
+                return task.toString();
+            }
         }
-        return task;
+        return null;
     }
 
-    public Task updateTask(int id,String title, String description,String toBeCompleted){
-        Task updatedTask = new Task(id, title, description, toBeCompleted, false);
-        try {
-            if(tasks.size()<id){
-                System.out.println("Invalid id.");
-            } else {
-                Task newTask = new Task(id, title, description, null, false);
-                updatedTask=tasks.set(id,newTask);
-            }
-        } catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e.getMessage());
-        }
-        saveTask();
-       return updatedTask;
-    }
+    // public Task updateTask(int id,String title, String description){
+    //    Task uTask = getTask(id);
+    //    System.out.println(uTask.getTaskTitle());
+    //    if(!title.isEmpty()){
+    //         uTask.setTaskTitle(title);
+    //    } else if(description.isEmpty()){
+    //         uTask.setTask(description);
+    //    }
+    //    saveTask();
+    //    return uTask;
+    // }
 
     public void deleteTask(int id){
         tasks.remove(id);
@@ -80,7 +74,7 @@ public class TaskManager{
         if(tasks.isEmpty()){
             System.out.println("You currently have no task.");
         } else {
-            tasks.forEach(task -> System.out.println(task));
+            tasks.forEach(task -> System.out.println(task+"\n"));
         }
     }
 

@@ -49,18 +49,36 @@ public class TaskMainApp {
                 case 2 -> task_manager.myTasks();
 
                 case 3 -> {
-                    char res = ' ';
+                    // String res = "";
+                    String utitle = "";
+                    String udescription = "";
                     
-                    System.out.println("What do you want to update:");
+                    System.out.println("Id of task to be updated: ");
                     int id = scanner.nextInt();
-                    System.out.println("Enter id of task to be updated: ");
-                    
-                    System.out.println("1) Title");
-                    System.out.println("2) Description");
-                    res = scanner.next().charAt(0);
-                    if(res=='1'){
-                        task_manager.getTask(id);
+                    scanner.nextLine();
+                    System.out.println("What do you want to update(title/description): ");
+                    String res = scanner.nextLine();
+                    if(res.equals("title")){
+                        System.out.println("Enter new title: ");
+                        utitle = scanner.nextLine();
+                    } else if(res.equals("description")) {
+                        System.out.println("Enter new description: ");
+                        udescription = scanner.nextLine();
+                    } else{
+                        System.out.println("Invalid input");
+                        break;
                     }
+                    
+                    // task_manager.updateTask(id, utitle, udescription);
+
+                }
+
+                case 5 -> {
+                    System.out.println("Enter task id: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    task_manager.lookupTask(id);
+                    // scanner.nextLine();
                 }
             }
 
