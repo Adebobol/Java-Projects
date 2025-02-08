@@ -73,12 +73,31 @@ public class TaskMainApp {
 
                 }
 
+                case 4 -> {
+                    System.out.println("Enter id of task: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    task_manager.deleteTask(id);
+                }
+              
+
                 case 5 -> {
                     System.out.println("Enter task id: ");
                     int id = scanner.nextInt();
                     scanner.nextLine();
                     task_manager.lookupTask(id);
                     // scanner.nextLine();
+                }
+
+                case 6 -> {
+                    String exitRes = "";
+                    System.out.println("Are you sure you want to exit(yes/no): ");
+                    exitRes = scanner.nextLine();
+                    if(exitRes.equals("yes")){
+                        open=false;
+                    } else if(exitRes.equals("no")){
+                        continue;
+                    }
                 }
             }
 

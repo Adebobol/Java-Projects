@@ -60,7 +60,8 @@ public class TaskManager{
     }
 
     public void deleteTask(int id){
-        tasks.remove(id);
+        int twickid = id -1;
+        tasks.remove(twickid);
         saveTask();
         System.err.print("Task deleted from cache.");
     }
