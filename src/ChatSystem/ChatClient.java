@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class ChatClient {
     private Socket socket = null;
-
+   
 
     public void ChatC(String Ip, int Port ){
         try {

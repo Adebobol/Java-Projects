@@ -21,7 +21,7 @@ public class ChatServer {
             // input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             // server.accept();
             while(true){
-                server.accept();
+                socket = server.accept();
                 System.out.println("client connected.");
                 readMessages(socket);
             }
