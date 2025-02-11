@@ -21,7 +21,8 @@ public class Server {
             socket = ssocket.accept();
             System.out.println("client connected");
             // input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            input = new DataInputStream(socket.getInputStream());
+            // input = new DataInputStream(socket.getInputStream());
+            readMessages(socket);
             while(true){
                 String message = input.readUTF();
                 System.out.println("Message from Client: " + message);
@@ -32,6 +33,15 @@ public class Server {
         
         }
     }
+
+    public void readMessages(Socket socket){
+        try {
+             input = new DataInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            // TODO: handle exception
+        }
+    }
+
     public static void main(String[] args) {
         Server server = new Server();
         server.LinkServer(4000,1);

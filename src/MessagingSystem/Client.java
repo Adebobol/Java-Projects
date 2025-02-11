@@ -18,7 +18,8 @@ public class Client {
             socket = new Socket(Ip,Port);
             System.out.println("Trying to send message to server.");
             // writer = new PrintWriter(socket.getOutputStream());
-            writer =  new DataOutputStream(socket.getOutputStream());
+            // writer =  new DataOutputStream(socket.getOutputStream());
+            sendMessage(socket);
             reader = new BufferedReader(new InputStreamReader(System.in));
             while(true){
                 String msg = reader.readLine();
@@ -40,6 +41,15 @@ public class Client {
             }
         }
     }
+
+    public void sendMessage(Socket socket){
+        try {
+             writer =  new DataOutputStream(socket.getOutputStream());
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
     public static void main(String[] args) {
         Client client = new Client();
         client.LinkClient("127.0.0.1", 4000);
