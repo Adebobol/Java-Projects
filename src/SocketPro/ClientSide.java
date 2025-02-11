@@ -22,6 +22,7 @@ public class ClientSide {
             System.out.println("connected");
             // input = new DataInputStream(System.in);
             input = new BufferedReader(new InputStreamReader(System.in));
+            // input = new BufferedReader(new DataInputStream(System.in));
             out = new DataOutputStream(socket.getOutputStream());
         } catch (UnknownHostException u) {
             System.out.println(u);

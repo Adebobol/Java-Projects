@@ -31,7 +31,7 @@ public class ChatServer {
     }
 
     public void readMessages(Socket clientSocket) throws IOException{
-        BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         // reader.read();
         // reader.ready();

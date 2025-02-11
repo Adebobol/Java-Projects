@@ -13,7 +13,7 @@ public class ChatClient {
         try {
             socket = new Socket(Ip,Port);
             System.out.println("Connecting to the server...");
-        } catch (Exception e) {
+        } catch (Exception e) { 
             // TODO: handle exception
         }
     }
