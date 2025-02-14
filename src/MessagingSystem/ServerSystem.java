@@ -16,16 +16,25 @@ public class ServerSystem {
     private DataInputStream input = null;
 
     public void LinkServer(){
-        try {
-            server = new ServerSocket(Port);
-            System.out.println("waiting for client to connect.");
-            server.accept();
-            input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            readMessage();
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-       
+        
+            try {
+                server = new ServerSocket(Port);
+                System.out.println("waiting for client to connect.");
+                while(true){ 
+                    socket=server.accept();
+                    System.out.println("client connected.   ");
+
+                    if(socket.isConnected())
+                    new Thread(()->{
+                        ClientConnected client = new ClientConnected(socket);
+                        client.readMessages();
+                    }).start();
+
+                }
+            } catch (Exception e) {
+                
+            }
+        
     }
 
     private void readMessage() throws IOException{
